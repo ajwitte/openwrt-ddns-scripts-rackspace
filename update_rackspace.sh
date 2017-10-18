@@ -36,6 +36,7 @@ while [[ $rs_status == "INITIALIZED" -o $rs_status == "RUNNING" ]] ; do
   rs_status=`curl -s --insecure "$rs_callback" \
     -H "X-Auth-Token: $rs_token" -H "Accept: application/json" \
     | jsonfilter -e "@.status"` || return 1
+  sleep 1
 done
 
 [ $rs_status == "COMPLETED" ]
